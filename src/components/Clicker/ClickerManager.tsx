@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { STATE } from '@/types/constants'
 
@@ -32,10 +32,6 @@ const ClickerManager = () => {
   const onStart = () => {
     setGameState(STATE.PLAYING)
   }
-
-  useEffect(() => {
-    console.log('state', gameState)
-  }, [gameState])
 
   return (
     <Box>
