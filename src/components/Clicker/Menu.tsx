@@ -142,8 +142,8 @@ const Menu = ({ open, onClose, player1, player2 }: Props) => {
               <Stack alignItems="center" textAlign="center" mt={3}>
                 <Typography variant="h3">
                   {(() => {
-                    if (player1 < player2) return 'Jacob wins!'
-                    if (player1 > player2) return 'Also Jacob wins!'
+                    if (player1 > player2) return 'Jacob wins!'
+                    if (player1 < player2) return 'Also Jacob wins!'
                     return 'Jacobs win!'
                   })()}
                 </Typography>
