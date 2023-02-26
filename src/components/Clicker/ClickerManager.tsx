@@ -7,6 +7,12 @@ import { STATE } from '@/types/constants'
 
 import Clicker from './Clicker'
 import Timer from './Timer'
+import MadFace from '../../../public/images/jacob_faces/jacob_mad.svg'
+import ScaredFace from '../../../public/images/jacob_faces/jacob_scared.svg'
+import SillyFace from '../../../public/images/jacob_faces/jacob_silly.svg'
+import SmileFace from '../../../public/images/jacob_faces/jacob_smile.svg'
+import SurprisedFace from '../../../public/images/jacob_faces/jacob_surprised.svg'
+import WinkFace from '../../../public/images/jacob_faces/jacob_wink.svg'
 
 const ClickerManager = () => {
   const [player1Clicks, setPlayer1Clicks] = useState(0)
@@ -45,11 +51,11 @@ const ClickerManager = () => {
       <Stack direction="row" py={3} textAlign="center">
         <Box sx={{ flex: '50%' }}>
           <Typography variant="h4">Jacob</Typography>
-          <Clicker clicks={player1Clicks} />
+          <Clicker clicks={player1Clicks} face={MadFace} />
         </Box>
         <Box sx={{ flex: '50%' }}>
           <Typography variant="h4">Also Jacob</Typography>
-          <Clicker clicks={player2Clicks} />
+          <Clicker clicks={player2Clicks} face={WinkFace} />
         </Box>
       </Stack>
     </Box>

@@ -5,7 +5,7 @@ import { useTimer } from 'use-timer'
 
 import { STATE } from '@/types/constants'
 
-const TIME_ALLOT = 2
+const TIME_ALLOT = 60
 
 type Props = {
   onExpire: () => void
@@ -40,10 +40,12 @@ const Timer = ({ onExpire, onStart, gameState }: Props) => {
   }, [gameState])
 
   const formattedTime = useMemo(() => {
-    const minutes = time / 60
-    const seconds = time % 60
-    // TODO add padding 0's
-    return `${minutes}:${seconds}`
+    const minutes = Math.floor(time / 60)
+    const seconds = time - minutes * 60
+
+    return `${minutes < 10 ? `0${minutes}` : minutes}:${
+      seconds < 10 ? `0${seconds}` : seconds
+    }`
   }, [time])
 
   return (
