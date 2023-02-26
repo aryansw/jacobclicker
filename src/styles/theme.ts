@@ -1,9 +1,9 @@
 import { red } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
-import { Roboto } from '@next/font/google'
+import { Freckle_Face } from '@next/font/google'
 
-export const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
+export const freckle = Freckle_Face({
+  weight: ['400'],
   subsets: ['latin'],
   display: 'swap',
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
@@ -11,6 +11,16 @@ export const roboto = Roboto({
 
 // Create a theme instance.
 const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: '#76261C',
+          // color: '#dbbc6c',
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: '#556cd6',
@@ -23,7 +33,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: freckle.style.fontFamily,
   },
 })
 

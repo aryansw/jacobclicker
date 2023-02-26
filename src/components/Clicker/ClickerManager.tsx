@@ -1,22 +1,23 @@
+import HomeIcon from '@mui/icons-material/Home'
 import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
 import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { STATE } from '@/types/constants'
 
 import Clicker from './Clicker'
+import Menu from './Menu'
 import Timer from './Timer'
-import MadFace from '../../../public/images/jacob_faces/jacob_mad.svg'
-import ScaredFace from '../../../public/images/jacob_faces/jacob_scared.svg'
-import SillyFace from '../../../public/images/jacob_faces/jacob_silly.svg'
-import SmileFace from '../../../public/images/jacob_faces/jacob_smile.svg'
-import SurprisedFace from '../../../public/images/jacob_faces/jacob_surprised.svg'
-import WinkFace from '../../../public/images/jacob_faces/jacob_wink.svg'
 
 const ClickerManager = () => {
+  const router = useRouter()
+
   const [player1Clicks, setPlayer1Clicks] = useState(0)
   const [player2Clicks, setPlayer2Clicks] = useState(0)
+
+  const [openMenu, setOpenMenu] = useState(false)
 
   const [gameState, setGameState] = useState<STATE>(STATE.IDLE)
 
@@ -39,23 +40,67 @@ const ClickerManager = () => {
     setGameState(STATE.PLAYING)
   }
 
+  const onRestart = () => {
+    setPlayer1Clicks(0)
+    setPlayer2Clicks(0)
+  }
+
+  const onMenuClose = () => {
+    setOpenMenu(false)
+  }
+
+  const onExpire = () => {
+    setGameState(STATE.IDLE)
+    setOpenMenu(true)
+  }
+
   return (
     <Box>
-      <Stack my={3} textAlign="center">
+      <Box sx={{ position: 'absolute', top: 15, left: 15 }}>
+        <Fab
+          title="Home"
+          size="small"
+          onClick={() => router.push('/select')}
+          disableRipple
+          sx={{
+            background: '#fef0ca',
+            transition: '0.25s ease 0s',
+            '&:hover': {
+              background: '#fef0ca',
+              boxShadow:
+                '0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%)',
+              transform: 'scale(1.02)',
+            },
+            '&:active': {
+              transform: 'scale(0.98)',
+            },
+          }}
+        >
+          <HomeIcon />
+        </Fab>
+      </Box>
+      <Menu
+        open={openMenu}
+        onClose={onMenuClose}
+        player1={player1Clicks}
+        player2={player2Clicks}
+      />
+
+      <Stack mb={3} textAlign="center">
         <Timer
-          onExpire={() => setGameState(STATE.IDLE)}
+          onExpire={onExpire}
           onStart={onStart}
           gameState={gameState}
+          setGameState={setGameState}
+          onRestart={onRestart}
         />
       </Stack>
-      <Stack direction="row" py={3} textAlign="center">
+      <Stack direction="row" pb={3} textAlign="center">
         <Box sx={{ flex: '50%' }}>
-          <Typography variant="h4">Jacob</Typography>
-          <Clicker clicks={player1Clicks} face={MadFace} />
+          <Clicker clicks={player1Clicks} />
         </Box>
         <Box sx={{ flex: '50%' }}>
-          <Typography variant="h4">Also Jacob</Typography>
-          <Clicker clicks={player2Clicks} face={WinkFace} />
+          <Clicker clicks={player2Clicks} isSecond />
         </Box>
       </Stack>
     </Box>

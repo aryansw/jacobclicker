@@ -2,13 +2,13 @@ import createEmotionServer from '@emotion/server/create-instance'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import * as React from 'react'
 
-import theme, { roboto } from '@/styles/theme'
+import theme, { freckle } from '@/styles/theme'
 import createEmotionCache from '@/utils/createEmotionCache'
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" className={roboto.className}>
+      <Html lang="en" className={freckle.className}>
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />

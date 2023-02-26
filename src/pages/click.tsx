@@ -2,6 +2,6 @@ import ClickerManager from '@/components/Clicker'
 
 import type { NextPage } from 'next'
 
-const Clicker: NextPage = () => <ClickerManager />
+const Click: NextPage = () => <ClickerManager />
 
-export default Clicker
+export default Click
