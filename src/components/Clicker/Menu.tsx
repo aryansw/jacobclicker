@@ -130,7 +130,7 @@ const Menu = ({ open, onClose, player1, player2 }: Props) => {
                 maxWidth: '550px',
                 width: '80vw',
                 height: '90vh',
-                maxHeight: '600px',
+                maxHeight: '450px',
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
